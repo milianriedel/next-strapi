@@ -24,7 +24,7 @@ export default function Jobs() {
   console.log(jobs)
 
   return (
-    <div>
+    <div className='flex flex-col gap-y-2'>
       {jobs && jobs?.map((job) => (
         <Link href={`/${job.id}`} key={job?.id}>{job?.attributes?.name}</Link>
       ))}

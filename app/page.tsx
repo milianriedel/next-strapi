@@ -31,9 +31,7 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <Jobs />
-      </main>
+      <Jobs />
     </HydrationBoundary>
   );
 }
