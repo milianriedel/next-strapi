@@ -14,14 +14,11 @@ export default function Jobs() {
 	} = useQuery<Job[]>({
 		queryKey: ['jobs'],
 		queryFn: getJobs,
-    refetchOnWindowFocus: 'always'
 	});
 
 
 	if (isLoading || isFetching) return <p>Loading…</p>;
 	if (isError) return <p>Error</p>;
-
-  console.log(jobs)
 
   return (
     <div className='flex flex-col gap-y-2'>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import TanstackProvider from '@/app/_providers/tanstack-provider';
+import ReduxProvider from '@/app/_providers/redux-provider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <TanstackProvider>
-          <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {children}
-          </main>
+          <ReduxProvider>
+            <main className="flex min-h-screen flex-col items-center justify-between p-24">
+              {children}
+            </main>
+          </ReduxProvider>
         </TanstackProvider>
       </body>
     </html>
