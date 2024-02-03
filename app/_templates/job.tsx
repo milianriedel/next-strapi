@@ -1,19 +1,18 @@
 'use client'
 
 import { Job } from '@/app/_graphql/graphql';
-import getJobs from '@/app/request/getJobs';
+import getJob from '@/app/request/getJob';
 import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
 
-export default function Jobs() {
+export default function Job({id}: {id: string}) {
   const {
-		data: jobs,
+		data: job,
 		isLoading,
 		isError,
 		isFetching,
-	} = useQuery<Job[]>({
-		queryKey: ['jobs'],
-		queryFn: getJobs,
+	} = useQuery<Job>({
+		queryKey: ['job', id],
+		queryFn: () => getJob(id),
     refetchOnWindowFocus: 'always'
 	});
 
@@ -21,13 +20,11 @@ export default function Jobs() {
 	if (isLoading || isFetching) return <p>Loading…</p>;
 	if (isError) return <p>Error</p>;
 
-  console.log(jobs)
+  console.log(job)
 
   return (
     <div>
-      {jobs && jobs?.map((job) => (
-        <Link href={`/${job.id}`} key={job?.id}>{job?.attributes?.name}</Link>
-      ))}
+      {job?.attributes?.name}
     </div>
   )
 }
